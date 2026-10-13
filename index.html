@@ -357,7 +357,44 @@ br.lg{display:inline}
   .copyright,.mail{font-size:calc(11.5 * var(--m));line-height:calc(15 * var(--m))}
 }
 
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+/* One opening sequence. The card artwork and page frame stay fixed; all
+   animated properties return to their authored values when each cue ends. */
+@media (prefers-reduced-motion:no-preference){
+  .cta__title{animation:title-enter .82s cubic-bezier(.2,.85,.2,1) .12s backwards}
+  .cta__lede{animation:copy-enter .66s cubic-bezier(.22,1,.36,1) .53s backwards}
+  .waitlist{animation:form-enter .72s cubic-bezier(.22,1,.36,1) .79s backwards}
+  .waitlist .btn{animation:button-enter .52s cubic-bezier(.22,1,.36,1) 1.07s backwards}
+  .brand__logo{animation:mark-enter .56s cubic-bezier(.22,1,.36,1) .91s backwards}
+  .brand__text{animation:copy-enter .62s cubic-bezier(.22,1,.36,1) 1.08s backwards}
+  .contact{animation:copy-enter .62s cubic-bezier(.22,1,.36,1) 1.22s backwards}
+  .footer__rule{animation:rule-enter .64s cubic-bezier(.22,1,.36,1) 1.31s backwards}
+  .footer__bottom{animation:copy-enter .56s cubic-bezier(.22,1,.36,1) 1.49s backwards}
+}
+@keyframes title-enter{
+  from{clip-path:inset(0 0 100% 0);transform:translateY(calc(14 * var(--v)))}
+  to{clip-path:inset(0 0 0 0);transform:none}
+}
+@keyframes copy-enter{
+  from{opacity:0;transform:translateY(calc(7 * var(--v)))}
+  to{opacity:1;transform:none}
+}
+@keyframes form-enter{
+  from{opacity:0;transform:translateY(calc(8 * var(--v))) scale(.985)}
+  to{opacity:1;transform:none}
+}
+@keyframes button-enter{
+  from{clip-path:inset(0 100% 0 0 round 999px)}
+  to{clip-path:inset(0 0 0 0 round 999px)}
+}
+@keyframes mark-enter{
+  from{opacity:0;transform:translateY(calc(5 * var(--v)))}
+  to{opacity:1;transform:none}
+}
+@keyframes rule-enter{
+  from{opacity:0;transform:scaleX(0);transform-origin:left center}
+  to{opacity:1;transform:none;transform-origin:left center}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
